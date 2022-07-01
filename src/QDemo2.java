@@ -1,3 +1,4 @@
+/*
 
 // Redesign of queue class for characters.
 class Queue {
@@ -92,3 +93,5 @@ class QDemo2 {
         System.out.println("\n");
     }
 }
+
+ */

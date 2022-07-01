@@ -2915,7 +2915,6 @@ class VarArgs {
     }
 }
 
- */
 
 // Use varargs with standard arguments.
 class VarArgs2 {
@@ -2936,5 +2935,451 @@ class VarArgs2 {
         vaTest("One varargs ",10);
         vaTest("Three varargs: ", 1, 2, 3);
         vaTest("No varargs: ");
+    }
+}
+
+
+// Varargs and overloading.
+class VarArgs3 {
+
+    static void vaTest(int ... v) {
+        System.out.println("vaTest(int ..): Number of args: " + v.length);
+        System.out.println("Contents: ");
+
+        for(int i=0; i < v.length; i++)
+            System.out.println(" arg " + i + ": " + v[i]);
+        System.out.println();
+    }
+
+    static void vaTest(boolean ... v) {
+        System.out.println("vaTest(boolean ...): Number of args: " + v.length);
+        System.out.println("Contents: ");
+
+        for(int i=0; i < v.length; i++)
+            System.out.println(" arg " + i + ": " + v[i]);
+        System.out.println();
+    }
+
+    static void vaTest(String msg, int ... v) {
+        System.out.println("vaTest(String, int ...): " + msg + v.length);
+        System.out.println("Contents: ");
+
+        for(int i=0; i < v.length; i++)
+            System.out.println(" arg " + i + ": " + v[i]);
+        System.out.println();
+    }
+
+
+
+    public static void main(String[] args) {
+
+        vaTest(1, 2, 3);
+        vaTest("Testing: ", 10, 20);
+        vaTest(true, false, false);
+    }
+}
+
+
+// Varargs, overloading and ambiguity.
+// This class contains an error and will not compile.
+class VarArgs4 {
+
+    // Use an int varargs parameter.
+    static void vaTest(int ... v) {
+        System.out.println("Number of args: " + v.length);
+        System.out.println("Contents: ");
+
+        for(int i=0; i < v.length; i++)
+            System.out.println(" arg " + i + ": " + v[i]);
+        System.out.println();
+    }
+
+    // Use a boolean vararg parameter.
+    static void vaTest(boolean ... v) {
+        System.out.println("Number of args: " + v.length);
+        System.out.println("Contents: ");
+
+        for(int i=0; i < v.length; i++)
+            System.out.println(" arg " + i + ": " + v[i]);
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        vaTest(1, 2, 3);  // OK
+        vaTest(true, false, false); // OK
+
+        vaTest();  // Error: Ambiguous.
+    }
+
+}
+
+
+
+class VarArgs4 {
+
+    // Use an int varargs parameter.
+    static void vaTest(int ... v) {
+        System.out.println("Number of args: " + v.length);
+        System.out.println("Contents: ");
+
+        for(int i=0; i < v.length; i++)
+            System.out.println(" arg " + i + ": " + v[i]);
+        System.out.println();
+    }
+
+    // Use a boolean vararg parameter.
+    static void vaTest(int n, int ... v) {
+        System.out.println("Number of args: " + v.length);
+        System.out.println("Contents: ");
+
+        for(int i=0; i < v.length; i++)
+            System.out.println(" arg " + i + ": " + v[i]);
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        vaTest(1, 2, 3);  // OK
+
+        vaTest();  // Error: Ambiguous.
+    }
+
+}
+
+
+// Redesign of queue class for characters.
+class Queue {
+    private char[] q;  // this array holds the queue
+    private int putloc, getloc;  // the put and the get indices
+
+    // Construct an empty Queue given it's size.
+    Queue(int size) {
+        q = new char[size]; // allocate memory for queue
+        putloc = 0;
+        getloc = q.length-1;
+    }
+
+    // Put a character into the queue.
+    void push(char ch) {
+        if(putloc == q.length) {
+            System.out.println(" - Queue is full.");
+            return;
+        }
+        q[putloc++] = ch;
+    }
+
+    // Get a character from the queue.
+    char pop() {
+        if(getloc == putloc) {
+            System.out.println(" - Queue is empty.");
+            return (char) 0;
+        }
+        return q[getloc--];
+    }
+}
+
+// Self Test 6, exercise 3.
+class Stack {
+    private char[] q;  // this array holds the queue
+    private int putloc, getloc;  // the put and the get indices
+
+    // Construct an empty Queue given it's size.
+    Stack(int size) {
+        q = new char[size]; // allocate memory for queue
+        putloc = 0;
+        getloc = q.length-1;
+    }
+
+    // Put a character into the queue.
+    void push(char ch) {
+        if(putloc == q.length) {
+            System.out.println(" - Queue is full.");
+            return;
+        }
+        q[putloc++] = ch;
+    }
+
+    // Get a character from the queue.
+    char pop() {
+        if(getloc == putloc) {
+            System.out.println(" - Queue is empty.");
+            return (char) 0;
+        }
+        return q[getloc--];
+    }
+}
+
+// Demonstrate the Queue class.
+class QDemo2 {
+    public static void main(String[] args) {
+        // construct 10-element empty queue
+        Stack q1 = new Stack(10);
+
+        char ch;
+        int i;
+
+        // show put characters onto q1
+        System.out.print("Input queue: ");
+        for(i=0; i<10; i++) {
+            System.out.print(ch = (char) ('A' + i));
+            q1.push(ch);
+//            System.out.print(ch);
+        }
+        System.out.println();
+
+
+        // Show the queue.
+        System.out.print("Contents for q1: ");
+        for(i=0; i < 10; i++) {
+            ch = q1.pop();
+            System.out.print(ch);
+        }
+        System.out.println("\n");
+
+    }
+}
+
+
+class VarArgs4 {
+
+    // Use an int varargs parameter.
+    static void sum(int ... v) {
+        int sum = 0;
+        System.out.println("Number of args: " + v.length);
+        System.out.println("Contents: ");
+
+
+        for(int i=0; i < v.length; i++) {
+            System.out.println(" arg " + i + ": " + v[i]);
+            sum += v[i];
+
+        }
+        System.out.println();
+        System.out.println("Sum of arguments: " + sum);
+    }
+
+
+    public static void main(String[] args) {
+        sum(1, 2, 3);  // OK
+    }
+
+}
+
+
+
+
+class Test {
+    int a;
+    Test(int i) { a = i; }
+
+    void swap(Test ob1, Test ob2) {
+        int t;
+        t = ob1.a;
+        ob1.a = ob2.a;
+        ob2.a = t;
+    }
+
+    public static void main(String[] args) {
+        Test obA = new Test(3);
+        Test obB = new Test(2);
+        System.out.println(obA.a);
+        System.out.println(obB.a);
+
+        obA.swap(obA, obB);
+
+        System.out.println(obA.a);
+        System.out.println(obB.a);
+
+    }
+}
+
+
+// Display a string backward using recursion.
+class Backwards {
+    String str;
+
+    Backwards(String s) {
+        str = s;
+    }
+
+    void backward(int idx) {
+        if(idx != str.length()-1)
+            backward(idx+1);
+
+        System.out.print(str.charAt(idx));
+    }
+}
+
+class BWDemo{
+    public static void main(String[] args) {
+        Backwards s = new Backwards("This is a test.");
+
+        s.backward(0);
+    }
+}
+
+
+// Recursive method that displays the contents of a string backwards.
+class RecB {
+    String str;
+    int loc;
+
+    RecB(String s) {
+        str = s;
+        loc = s.length()-1;
+    }
+
+    void Display(int idx) {
+        if(idx != loc) Display(idx + 1);
+
+        System.out.print(str.charAt(idx));
+        }
+}
+
+class RBDemo {
+    public static void main(String[] args) {
+        RecB ob = new RecB("Second test.");
+
+        ob.Display(0);
+    }
+}
+
+// Self Test 6, exp 13.
+class VarArgsT {
+
+    // Use an int varargs parameter.
+    int sum(int... v) {
+        int sum = 0;
+        System.out.println("Number of args: " + v.length);
+        System.out.println("Contents: ");
+
+
+        for (int i = 0; i < v.length; i++) {
+            System.out.println(" arg " + i + ": " + v[i]);
+            sum += v[i];
+        }
+        System.out.println();
+        return sum;
+    }
+}
+
+    class VADemo {
+        public static void main(String[] args) {
+            VarArgsT sumIt = new VarArgsT();
+
+            System.out.println(sumIt.sum(2, 3, 2));
+
+        }
+    }
+
+
+// Class with parameter to check if a number is even. Method returns true or false.
+class ChkNum {
+//    int num;
+
+    boolean isEven(int num) {
+        if((num % 2) == 0) return true;
+        else return false;
+    }
+}
+
+class ChkNumDemo {
+    public static void main(String[] args) {
+        ChkNum ob = new ChkNum();
+
+        System.out.println(ob.isEven(3));
+    }
+}
+
+
+// Create a Vehicle, with mpg, passengers, fuelcap. Create the minivan Vehicle and calculate and show range (mpg * fuelcap).
+class VehicleR {
+    int passengers;
+    int fuelcap;
+    int mpg;
+
+    VehicleR(int p, int f, int m) {
+        passengers = p;
+        fuelcap = f;
+        mpg = m;
+    }
+
+    int range() {
+        int r;
+        r = fuelcap * mpg;
+        return r;
+    }
+
+    void rangeP() {
+        System.out.println("Range is " + fuelcap * mpg);
+    }
+
+    double fuelNeeded(double miles) {
+        return miles / mpg;
+    }
+
+}
+
+class VehicleFactory {
+    public static void main(String[] args) {
+        VehicleR minivan = new VehicleR(7, 16, 21);
+        VehicleR sportcar = new VehicleR(2, 9, 21);
+        var range = 0;
+        double miles = 252;
+
+//        minivan.passengers = 7;
+//        minivan.fuelcap = 16;
+//        minivan.mpg = 21;
+//
+//        sportcar.passengers = 2;
+//        sportcar.fuelcap = 9;
+//        sportcar.mpg = 12;
+
+        range = minivan.range();
+        System.out.printf("The Minivan can drive %s for a distance of %s.", minivan.passengers, range);
+        System.out.println();
+        minivan.rangeP();
+
+        range = sportcar.range();
+        System.out.printf("The Sportscar can drive %s for a distance of %s.", sportcar.passengers, range);
+        System.out.println();
+        sportcar.rangeP();
+
+        System.out.printf("To drive %s miles the sport car needs %s gallons.", miles, sportcar.fuelNeeded(miles));
+    }
+}
+
+ */
+
+
+//
+class Pwr {
+    double b;
+    int e;
+    double val;
+
+    Pwr(double base, int exp) {
+        double b = base;
+        b = b; // or this.b = b;
+        e = exp;
+
+        val = 1;
+        if(exp == 0) return;
+        for( ; exp > 0; exp--) val = val * b;
+    }
+
+    double getVal() {
+        return this.val;
+    }
+}
+
+class DemoPwr {
+    public static void main(String[] args) {
+        Pwr x = new Pwr(4.0, 2);
+        Pwr y = new Pwr(2.5, 1);
+        Pwr z = new Pwr(5.7,0);
+
+        System.out.println(x.b + " raised to the " + x.e + " power is " + x.getVal());
+        System.out.println(y.b + " raised to the " + y.e + " power is " + y.getVal());
+        System.out.println(z.b + " raised to the " + z.e + " power is " + z.getVal());
     }
 }
