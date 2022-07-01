@@ -15,8 +15,10 @@ class QuickSort {
         x = items[(left+right)/2];
 
         do {
-            while ((items[i]) < x && (i < right)) i++;
-            while ((x < items[j]) && (j > left)) j--;
+            while ((items[i]) < x && (i < right))
+                i++;
+            while ((x < items[j]) && (j > left))
+                j--;
 
             if(i <= j) {
                 y = items[i];

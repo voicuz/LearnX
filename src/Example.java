@@ -2809,7 +2809,6 @@ class StaticError {
     }
 }
 
- */
 
 
 // Use a static block
@@ -2835,5 +2834,107 @@ class SDemo3 {
 
         System.out.println("Square root of 2 is " + StaticBlock.rootOf2);
         System.out.println("Square root of 3 is " + StaticBlock.rootOf3);
+    }
+}
+
+
+// Use a inner class.
+class Outer {
+    int[] nums;
+
+    Outer(int[] n) {
+        nums = n;
+    }
+
+    void analyze() {
+        Inner inOb = new Inner();
+        System.out.println("Minimum: " + inOb.min());
+        System.out.println("Maximum: " + inOb.max());
+        System.out.println("Average: " + inOb.avg());
+    }
+
+    // This is a inner class.
+    class Inner {
+        int min() {
+            int m = nums[0];
+
+            for(int i=1; i < nums.length; i++)
+                if(nums[i] < m) m = nums[i];
+
+            return m;
+        }
+        int max() {
+            int m = nums[0];
+
+            for(int i=1; i < nums.length; i++)
+                if(nums[i] > m) m = nums[i];
+
+            return m;
+        }
+
+        int avg() {
+            int a = 0;
+
+            for(int i=0; i < nums.length; i++)
+                a += nums[i];
+
+            return a/ nums.length;
+        }
+    }
+}
+
+class NestedClassDemo {
+    public static void main(String[] args) {
+        int[] x = {3, 2, 1, 5, 6, 9, 7, 8};
+        Outer outOb = new Outer(x);
+
+        outOb.analyze();
+    }
+}
+
+
+// Demonstrate variable-length arguments.
+class VarArgs {
+
+    // vaTest() uses a varargs.
+    static void vaTest(int ... v) {
+        System.out.println("Number of args: " + v.length);
+        System.out.println("Contents: ");
+
+        for(int i=0; i < v.length; i++)
+            System.out.println(" arg " + i + ": " + v[i]);
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+
+        // Notice how vaTest can be called with a variable number of arguments.
+        vaTest(10);      // 1 arg
+        vaTest(1, 2, 3); // 3 args
+        vaTest();            // no args
+    }
+}
+
+ */
+
+// Use varargs with standard arguments.
+class VarArgs2 {
+
+    // Here, msg is normal parameter and v is a varargs parameter.
+    static void vaTest(String msg, int ... v) {
+        System.out.println(msg + v.length);
+        System.out.println("Contents: ");
+
+        for(int i=0; i < v.length; i++)
+            System.out.println(" arg " + i + ": " + v[i]);
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+
+        // Notice how vaTest can be called with a variable number of arguments.
+        vaTest("One varargs ",10);
+        vaTest("Three varargs: ", 1, 2, 3);
+        vaTest("No varargs: ");
     }
 }

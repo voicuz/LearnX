@@ -1,7 +1,7 @@
 /*
-    Try this 5-3
-    A class that displays the binary representation of a value.
- */
+   // Try this 5-3
+   // A class that displays the binary representation of a value.
+
 
 class ShowBits {
     int numbits;
@@ -49,5 +49,49 @@ class ShowBitsDemo {
         // you can also low-order bits of any integer
         System.out.println("\nLow order 8 bits of 87987 in binary: ");
         b.show(87987);
+    }
+}
+
+ */
+
+
+// Use ShowBits as a local class.
+class LocalClassDemo {
+    public static void main(String[] args) {
+
+        // An inner class version of ShowBits.
+        class ShowBits {
+            int numbits;
+
+            ShowBits(int n) {
+                numbits = n;
+            }
+
+            void show(long val) {
+                long mask = 1;
+
+                // left-shift a 1 into the proper position
+                mask <<= numbits-1;
+
+                int spacer = 0;
+                for(; mask != 0; mask >>>= 1) {
+                    if((val & mask) != 0) System.out.print("1");
+                    else System.out.print("0");
+                    spacer++;
+                    if((spacer % 8) == 0) {
+                        System.out.print(" ");
+                        spacer = 0;
+                    }
+                }
+                System.out.println();
+            }
+        }
+
+        for(byte b = 0; b < 10; b++) {
+            ShowBits biteval = new ShowBits(8);
+
+            System.out.print(b + " in binary: ");
+            biteval.show(b);
+        }
     }
 }
