@@ -3348,7 +3348,6 @@ class VehicleFactory {
     }
 }
 
- */
 
 
 //
@@ -3381,5 +3380,192 @@ class DemoPwr {
         System.out.println(x.b + " raised to the " + x.e + " power is " + x.getVal());
         System.out.println(y.b + " raised to the " + y.e + " power is " + y.getVal());
         System.out.println(z.b + " raised to the " + z.e + " power is " + z.getVal());
+    }
+}
+
+
+class MyClass {
+    private int[] a;
+
+    private int alpha;
+    int beta;
+    int gamma;
+
+    public MyClass(int size, int errv) {
+
+    }
+
+    private void setAlpha(int a) {
+        alpha = a;
+        int z;
+        beta = a;
+    }
+
+    int getAlpha() {
+        setAlpha(10);
+    }
+
+}
+
+
+class Example {
+    public static void main(String[] args) {
+        MyClass ob = new MyClass(5, 2);
+
+        int z;
+
+        z = ob.a.length;
+
+        ob.gamma = 4;
+        ob.setAlpha();
+
+        var b = new int[2];
+        var a = b;
+
+        System.out.println(args.length);
+
+        var var = 1;
+        var k = -var;
+    }
+}
+
+
+
+// Compare block objects.
+class Block {
+    int a, b, c;
+    int volume;
+
+    Block(int i, int j, int k) {
+        a = i;
+        b = j;
+        c = k;
+        volume = a * b * c;
+    }
+
+    boolean sameBlock(Block ob) {
+        if((ob.a == a) & (ob.b == b) & (ob.c == c)) return true;
+        else return false;
+    }
+
+    boolean sameVolume(Block ob) {
+        if(ob.volume == volume) return true;
+        else return false;
+    }
+}
+
+class BlockDemo {
+    public static void main(String[] args) {
+        Block ob1 = new Block(10, 2, 5);
+        Block ob2 = new Block(10, 2, 5);
+        Block ob3 = new Block(3, 6, 9);
+        Block ob4 = new Block(9, 6, 3);
+
+        System.out.println(ob1.sameBlock(ob2));
+        System.out.println(ob1.sameBlock(ob3));
+        System.out.println(ob3.sameVolume(ob4));
+
+
+    }
+}
+
+
+class Test {
+    int a, b;
+
+    Test(int i, int j) {
+        a = i;
+        b = j;
+    }
+
+    void Change(Test mv) {
+        mv.a = a + b;
+        mv.b = -b;
+    }
+}
+
+class CallByValue {
+    public static void main(String[] args) {
+        Test ob = new Test(15, 20);
+        Test ob1 = new Test(5, 2);
+        int x = 15, y = 20;
+        System.out.println(ob1.a + " " + ob1.b);
+
+        ob1.Change(ob1);
+        System.out.println(ob1.a + " " + ob1.b);
+
+
+
+    }
+}
+
+
+// Return a programmer-defined object.
+class Err {
+    String msg;
+    int severity;
+
+    Err(String m, int a) {
+        msg = m;
+        severity = a;
+    }
+}
+
+class ErrorInfo{
+    String[] msgs = {
+            "Output error",
+            "Input error",
+            "Disk full",
+            "Index out-of-bounds"
+    };
+    int[] howBad = {3, 3, 5, 4};
+
+    Err getErrorInfo(int i) {
+        if(i >= 0 & i < msgs.length)
+            return new Err(msgs[i], howBad[i]);
+        else
+            return new Err("Invalid code", 0);
+    }
+}
+
+class ErrInfo{
+    public static void main(String[] args) {
+        ErrorInfo err = new ErrorInfo();
+        Err e, e2;
+
+        e = err.getErrorInfo(2);
+        System.out.println(e.msg + " " + e.severity);
+
+        e2 = err.getErrorInfo(19);
+        System.out.println(e2.msg + " " + e2.severity);
+    }
+}
+
+ */
+
+// Initialize one object with another.
+class Summation {
+    int sum;
+
+    // Construct from int.
+    Summation(int num) {
+        sum = 0;
+        for(int i=1; i <= num; i++)
+            sum += i;
+    }
+
+    // Construct from another object.
+    Summation(Summation ob) {
+        sum = ob.sum * 2;
+    }
+}
+
+class SumDemo {
+    public static void main(String[] args) {
+        Summation s1 = new Summation(5);
+        Summation s2 = new Summation(s1);
+
+        System.out.println(s1.sum);
+        System.out.println(s2.sum);
     }
 }
