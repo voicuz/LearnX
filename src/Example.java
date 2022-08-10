@@ -4253,6 +4253,8 @@ class IFExtend{
 
  */
 
+
+
 public interface Example {
     // This is a "normal" interface method declaration.
     // It does not define a default implementation.
@@ -4287,5 +4289,6 @@ class DefaultMethodDemo {
 
         // Can also call getAdminID(), because of default implementation.
         System.out.println("Admin ID is " + obj.getAdminID());
+
     }
 }

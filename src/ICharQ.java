@@ -5,4 +5,8 @@ public interface ICharQ {
 
     // Get a character from the queue.
     char get();
+
+    static int getUniversalID() {
+        return 0;
+    }
 }

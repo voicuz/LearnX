@@ -1,10 +1,23 @@
-
-// An enhanced version of Series that includes a default method called getNextArray().
+// A further enhanced version of Series that include two default methods that use a private method called getArray();
 public interface Series {
     int getNext();  // return next number in series
 
     // Return an array that returns the next n elements in the series beyond the current element.
     default int[] getNextArray(int n) {
+        return getArray(n);
+    }
+
+    // Return an array that returns the next n elements in the series beyond the current elements.
+    default int[] skipAndGetNextArray(int skip, int n) {
+
+        // Skip the specified number of elements.
+        getArray(skip);
+
+        return getArray(n);
+    }
+
+    // A private method that returns an array containing the next n elements.
+    private int[] getArray(int n) {
         int[] vals = new int[n];
 
         for(int i=0; i<n; i++) vals[i] = getNext();
@@ -91,7 +104,13 @@ class SeriesDemo {
         int[] a = twoOb.getNextArray(4);
 
         for(int i=0; i<4; i++)
-            System.out.println(a[i] + " ");
+            System.out.print(a[i] + " ");
+
+        System.out.println();
+        a = twoOb.skipAndGetNextArray(4, 3);
+
+        for(int i=0; i<3; i++)
+            System.out.print(a[i] + " ");
 
         twoOb.getPrev();
         ob = twoOb;
