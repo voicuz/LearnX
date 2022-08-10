@@ -618,11 +618,10 @@ public class Example {
     }
 }
 
- */
 
 // Using a cast.
 
-/*
+
 public class Example {
     public static void main(String[] args) {
         int i;
@@ -1575,9 +1574,6 @@ class PwrDemo {
     }
 }
 
- */
-
-/*
 
 // The this keyword.
 class Pwr {
@@ -3541,8 +3537,6 @@ class ErrInfo{
     }
 }
 
- */
-
 // Initialize one object with another.
 class Summation {
     int sum;
@@ -3567,5 +3561,731 @@ class SumDemo {
 
         System.out.println(s1.sum);
         System.out.println(s2.sum);
+    }
+}
+
+
+class Factorial1 {
+
+    int factR(int n) {
+        int result;
+        if(n==1) return 1;
+        result = factR(n-1) * n;
+        return result;
+    }
+}
+
+class Recursion {
+    public static void main(String[] args) {
+        Factorial1 ob = new Factorial1();
+
+        System.out.println(ob.factR(1));
+        System.out.println(ob.factR(2));
+        System.out.println(ob.factR(3));
+        System.out.println(ob.factR(4));
+    }
+}
+
+
+class Main {
+    int x;
+    int y;
+
+    // Constructor with a parameter
+    Main(int y) {
+        x = x;
+        this.y = y;
+    }
+
+    // Call the constructor
+    public static void main(String[] args) {
+        Main myObj = new Main(5);
+        System.out.println("Value of x = " + myObj.y);
+    }
+}
+
+
+
+// Use a static block
+class StaticBlock {
+    static double rootOf2;
+    static double rootOf3;
+
+    static {
+        System.out.println("Inside static block.");
+        rootOf2 = Math.sqrt(2);
+        rootOf3 = Math.sqrt(3);
+    }
+
+    StaticBlock(String msg) {
+        System.out.println(msg);
+    }
+}
+
+class SDemo3 {
+    public static void main(String[] args) {
+        StaticBlock ob;
+        ob = new StaticBlock("Inside constructor.");
+
+        System.out.println("SqRoot of two is " + StaticBlock.rootOf2);
+        System.out.println("SqRoot of three is " + StaticBlock.rootOf3);
+    }
+}
+
+
+
+class StaticDemo {
+    int x;
+    static int y = 4;
+    static int z = 4;
+
+    static int Div(int y) {
+
+        return y = y / 2;
+//        Div2();
+    }
+
+    static int Div2() {
+//        Div();
+        return z / 2;
+    }
+
+    static int Div3() {
+        int y = 4;
+        Div(3);
+        return y / 4;
+    }
+
+}
+
+class SDemo {
+    public static void main(String[] args) {
+        StaticDemo ob1 = new StaticDemo();
+        StaticDemo ob2 = new StaticDemo();
+
+        ob1.x = 2;
+        ob2.x = 3;
+
+        ob1.y = 4;
+        ob2.y = 6;
+        System.out.println(ob1.y);
+
+        StaticDemo.y = 5;
+        ob1.y = 7;
+        System.out.println(StaticDemo.y);
+
+        StaticDemo.Div();
+        StaticDemo.Div3();
+        System.out.println(StaticDemo.y);
+
+//        System.out.println(ob1.x);
+    }
+}
+
+
+
+// Self Test 6.3
+class Stack {
+    private char[] ch;
+    private int size, putloc, getloc;
+
+    Stack(int s) {
+        size = s;
+        ch = new char[s];
+        putloc = 0;
+        getloc = size - 1;
+    }
+
+    void push(char c) {
+        if(putloc == size) System.out.println(" - Queue full.");
+        ch[putloc++] = c;
+        }
+
+    char pop() {
+        if(getloc < 0) {
+            System.out.println(" - End of queue.");
+            getloc--;
+            return (char) 0;
+        }
+        if(getloc >= 0) return ch[getloc--];
+        return (char) 0;
+    }
+}
+
+class SDemo {
+    public static void main(String[] args) {
+        Stack ob = new Stack(9);
+        char chT;
+
+        System.out.print("Demonstrate queue: ");
+        for(int i=0; i < 9; i++) {
+            ob.push((char) ('a' + i));
+            System.out.print((char) ('a' + i) + " ");
+        }
+
+        System.out.println();
+
+        System.out.print("Extract queue: ");
+        for(int i=0; i < 9; i++) {
+            chT = ob.pop();
+            if (chT != 0) System.out.print(chT + " ");
+        }
+
+    }
+}
+
+
+// Self Test 6.6
+class Recursive {
+    String str;
+    int len;
+
+    Recursive(String s) {
+        str = s;
+        len = s.length()-1;
+    }
+
+    void rec() {
+        if (len < 0) return;
+        System.out.print(str.charAt(len));
+        len--;
+        rec();
+    }
+}
+
+class RDemo {
+    public static void main(String[] args) {
+        Recursive ob = new Recursive("This is a test.");
+
+        ob.rec();
+
+    }
+}
+
+
+// Self Test 6.13
+
+class Example {
+//    int a;
+
+//    Example(int b) {
+//        a = b;
+//    }
+
+    int sum(int ... v) {
+        int size = v.length;
+        int res = 0;
+
+        for(int i=0; i<size; i++) res += v[i];
+
+        return res;
+    }
+
+//    public static void main(String[] args) {
+//        int r = Example.sum(1, 2, 4, 6);
+//
+//        System.out.println("Sum is: " + r);
+//    }
+
+}
+
+class varargsDemo {
+    public static void main(String[] args) {
+        Example ob = new Example();
+
+        int r;
+        r = ob.sum(3, 3, 3);;
+
+        System.out.println("Sum is: " + r);
+
+    }
+}
+
+
+class Recursive {
+    String str;
+    int len;
+
+    Recursive(String s) {
+        str = s;
+        len = s.length()-1;
+    }
+
+    void rec(int idx) {
+        if(idx != len) rec(idx+1);
+
+        System.out.print(str.charAt(idx));
+    }
+}
+
+class RDemo {
+    public static void main(String[] args) {
+        Recursive ob = new Recursive("This is a test.");
+
+        ob.rec(0);
+
+    }
+}
+
+
+// Self Test 6.4
+class Test {
+    int a;
+
+    Test(int i) {
+        a = i;
+    }
+
+    void swap(Test o1, Test o2) {
+        int t;
+        t = o1.a;
+        o1.a = o2.a;
+        o2.a = t;
+    }
+
+    int v(int ... v) {return v[1];}
+    int v(int v2, int ... v3) {return v2;}
+//    double v3(double ... v) {return v[0];}
+//    double v3(double v2, double ... v3) {return v3[0];}
+}
+
+class TestE {
+    public static void main(String[] args) {
+        Test ob1 = new Test(6);
+        Test ob2 = new Test(3);
+
+        ob2.v(1, 1);
+
+        System.out.println(ob1.a);
+        System.out.println(ob2.a);
+
+        ob2.swap(ob1, ob2);
+
+        System.out.println(ob1.a);
+        System.out.println(ob2.a);
+
+    }
+}
+
+// A simple class hierarchy.
+
+// A class for tow-dimensional objects.
+class TwoDShape {
+    private double width;
+    private double height;
+
+    void showDim() {
+        System.out.println("Width and height are: " + width + " and " + height);
+    }
+}
+
+// A subclass of TwoDShape for triangles.
+class Triangle extends TwoDShape {
+    String style;
+
+    double area() {
+        return width * height / 2;
+    }
+
+    void showStyle() {
+        System.out.println("Triangle is: " + style);
+    }
+}
+
+// A subclass for TwoDShape for rectangles.
+class Rectangle extends TwoDShape {
+    boolean isSquare() {
+        if(width == height) return true;
+        return false;
+    }
+
+    double area() {
+        return width * height;
+    }
+}
+
+class Shapes {
+    public static void main(String[] args) {
+        Triangle t1 = new Triangle();
+        Triangle t2 = new Triangle();
+        Rectangle t3 = new Rectangle();
+        TwoDShape shape = new TwoDShape();
+
+        shape.width = 10;
+        shape.height = 20;
+        shape.showDim();
+
+        t1.width = 4.0;
+        t1.height = 4.0;
+        t1.style = "filled";
+
+        t2.width = 8.0;
+        t2.height = 12.0;
+        t2.style = "outlined";
+
+        System.out.println("Info for t1: ");
+        t1.showStyle();
+        t1.showDim();
+        System.out.println("Area is: " + t1.area());
+
+        System.out.println();
+
+
+        t3.width = 3.0;
+        t3.height = 4.0;
+
+        System.out.println("Info for t3: ");
+        System.out.println(t3.isSquare());
+        System.out.println("Area is: " + t3.area());
+
+    }
+}
+
+
+// Use accessor methods to get and set private members.
+
+// A class for tow-dimensional objects.
+class TwoDShape {
+    private double width;
+    private double height;
+
+    // Accessor methods for width and height.
+    double getWidth() {return width;}
+    double getHeight() {return height;}
+    void setWidth(double w) {width = w;}
+    void setHeight(double h) {height = h;}
+
+
+    void showDim() {
+        System.out.println("Width and height are: " + width + " and " + height);
+    }
+}
+
+// A subclass of TwoDShape for triangles.
+class Triangle extends TwoDShape {
+    String style;
+
+    double area() {
+        return getHeight() * getWidth() / 2;
+    }
+
+    void showStyle() {
+        System.out.println("Triangle is: " + style);
+    }
+}
+
+// A subclass for TwoDShape for rectangles.
+class Rectangle extends TwoDShape {
+    boolean isSquare() {
+        if(getHeight() == getWidth()) return true;
+        return false;
+    }
+
+    double area() {
+        return getWidth() * getHeight();
+    }
+}
+
+class Shapes {
+    public static void main(String[] args) {
+        Triangle t1 = new Triangle();
+        Triangle t2 = new Triangle();
+        Rectangle t3 = new Rectangle();
+        TwoDShape shape = new TwoDShape();
+
+        shape.setHeight(10);
+        shape.setWidth(20);
+        shape.showDim();
+
+        t1.setWidth(4);
+        t1.setHeight(4);
+        t1.style = "filled";
+
+        t2.setWidth(8);
+        t2.setHeight(12);
+        t2.style = "outlined";
+
+        System.out.println("Info for t1: ");
+        t1.showStyle();
+        t1.showDim();
+        System.out.println("Area is: " + t1.area());
+
+        System.out.println();
+
+        System.out.println("Info for t2: ");
+        t2.showStyle();
+        t2.showDim();
+        System.out.println("Area is: " + t2.area());
+
+        System.out.println();
+
+        t3.setWidth(3);
+        t3.setHeight(4);
+
+        System.out.println("Info for t3: ");
+        System.out.println(t3.isSquare());
+        System.out.println("Area is: " + t3.area());
+
+    }
+}
+
+// Using super to overcome name hiding.
+class A {
+    int i;
+}
+
+// Create a subclass by extending class A.
+class B extends A {
+    int i;
+
+    B(int a, int b) {
+        super.i = a;
+        i = b;
+    }
+
+    void show() {
+        System.out.println("i in superclass " + super.i);
+        System.out.println("i in subclass " + i);
+    }
+}
+
+class T {
+    public static void main(String[] args) {
+        B ob = new B(1,2);
+
+        ob.show();
+    }
+}
+
+
+
+// Demonstrate when constructors are executed.
+
+// Create a superclass.
+class A {
+    A() {
+        System.out.println("Constructing A.");
+    }
+}
+
+class B extends A {
+    B() {
+        System.out.println("Constructing B.");
+    }
+}
+
+class C extends B {
+    C() {
+        System.out.println("Constructing C.");
+    }
+}
+
+class OrderOfConstruction {
+    public static void main(String[] args) {
+        C c = new C();
+    }
+}
+
+
+
+// A superclass reference can refer to subclass object.
+class X {
+    int a;
+
+    X(int i) {
+        a = i;
+    }
+}
+
+class Y extends X {
+    int b;
+
+    Y(int i, int j) {
+        super(j);
+        b = i;
+    }
+}
+
+class SupSubRef {
+    public static void main(String[] args) {
+        X x = new X(10);
+        X x2;
+        Y y = new Y(5, 6);
+
+        x2 = x;
+        System.out.println("x2.a: " + x2.a);
+
+        x2 = y;  // Ok, because Y is derived from X.
+        System.out.println("x2.a: " + x2.a);
+
+        System.out.println("x2.a: " + x2.b);
+
+    }
+}
+
+
+
+
+package JavaLearnX;
+
+// Method overriding.
+class A {
+    int i, j;
+    final int f = 1;
+
+    A(int a, int b) {
+        i = a;
+        j = b;
+    }
+
+    // display i and j
+    void show() {
+        System.out.println("i and j: " + i + " " + j);
+    }
+
+    final void meth() {
+        System.out.println("This is final method");
+    }
+}
+
+class B extends A {
+    int k;
+
+    B(int a, int b, int c) {
+        super(a, b);
+        k = c;
+        final int z;
+        z = 1;
+    }
+
+    // display k - this overrides show() in A
+    void show(String msg) {
+        System.out.println(msg + k);
+    }
+
+}
+
+class Override {
+    public static void main(String[] args) {
+        B ob1 = new B(9, 3, 6);
+        B ob2 = new B(9, 3, 6);
+        B ob3;
+
+        boolean c;
+        String s;
+
+        ob1.show();
+        ob1.show("This is k: ");
+
+        c = ob1.equals(ob2);
+
+        s = ob1.toString();
+
+//        ob3 = (B)ob1.clone();
+
+        System.out.println(s);
+
+    }
+}
+
+ */
+
+/*
+// An interface that contains constants.
+interface IConst {
+    int MIN = 0;
+    int MAX = 10;
+    String ERRORMSG = "Boundary Error";
+}
+
+class IConstD implements IConst {
+    public static void main(String[] args) {
+        int[] nums = new int[MAX];
+
+        for(int i=MIN; i<11; i++) {
+            if(i>=MAX) System.out.println(ERRORMSG);
+            else {
+                nums[i] = i;
+                System.out.print(nums[i] + " ");
+            }
+        }
+    }
+}
+
+ */
+
+
+/*
+// One interface can extend another.
+interface A {
+    void meth1();
+    void meth2();
+}
+
+interface B extends A {
+    void meth3();
+}
+
+// This class has to implement all of  A and B.
+class MyClass implements B {
+    public void meth1() {
+        System.out.println("Implement meth1().");
+    }
+
+    public void meth2() {
+        System.out.println("Implement meth2().");
+    }
+
+    public void meth3() {
+        System.out.println("Implement meth3().");
+    }
+}
+
+class IFExtend{
+    public static void main(String[] args) {
+        MyClass ob = new MyClass();
+
+        ob.meth1();
+        ob.meth2();
+        ob.meth3();
+    }
+}
+
+ */
+
+public interface Example {
+    // This is a "normal" interface method declaration.
+    // It does not define a default implementation.
+    int getUserID();
+
+    // This is a default method. Notice that it provides a method implementation.
+    default int getAdminID() {
+        return 1;
+    }
+}
+
+// Implement Example.
+class MyIFImp implements Example {
+    // Only getUserID() defined by example needs to be implemented.
+    // getAdminID() can be allowed to default.
+    public int getUserID() {
+        return 100;
+    }
+
+//    public int getAdminID() {
+//        return 42;
+//    }
+}
+
+// Use the default method.
+class DefaultMethodDemo {
+    public static void main(String[] args) {
+        MyIFImp obj = new MyIFImp();
+
+        // Can call getUserID() because it is explicitly implemented by MyIFImp.
+        System.out.println("User ID is " + obj.getUserID());
+
+        // Can also call getAdminID(), because of default implementation.
+        System.out.println("Admin ID is " + obj.getAdminID());
     }
 }

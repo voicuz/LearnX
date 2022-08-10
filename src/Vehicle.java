@@ -1,3 +1,4 @@
+/*
 // Add a constructor
 
 class Vehicle {
@@ -47,24 +48,6 @@ class TwoVehicles {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
 
 // Program that uses the Vehicle class.
 
