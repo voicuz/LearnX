@@ -2,7 +2,7 @@
 //
 // Build a subclass of Vehicle for trucks.
 
-class Vehicle {
+class Vehicle implements IVehicle {
     private int passengers; // number of passengers
     private int fuelcap;    // fuel capacity in gallons
     private int mpg;        // fuel consumption in miles per gallon
@@ -15,12 +15,12 @@ class Vehicle {
     }
 
     // Return the range.
-    int range() {
+    public int range() {
         return fuelcap * mpg;
     }
 
     // Compute fuel needed for a given distance.
-    double fuelNeeded(int miles) {
+    public double fuelNeeded(int miles) {
         return (double) miles/mpg;
     }
 }
