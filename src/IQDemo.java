@@ -1,4 +1,6 @@
+/*
 import qpack.*;
+
 
 // Demonstrate the ICharQ interface.
 class IQDemo {
@@ -72,3 +74,4 @@ class IQDemo {
         }
     }
 }
+*/

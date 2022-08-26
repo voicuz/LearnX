@@ -3073,66 +3073,7 @@ class Queue {
     }
 }
 
-// Self Test 6, exercise 3.
-class Stack {
-    private char[] q;  // this array holds the queue
-    private int putloc, getloc;  // the put and the get indices
 
-    // Construct an empty Queue given it's size.
-    Stack(int size) {
-        q = new char[size]; // allocate memory for queue
-        putloc = 0;
-        getloc = q.length-1;
-    }
-
-    // Put a character into the queue.
-    void push(char ch) {
-        if(putloc == q.length) {
-            System.out.println(" - Queue is full.");
-            return;
-        }
-        q[putloc++] = ch;
-    }
-
-    // Get a character from the queue.
-    char pop() {
-        if(getloc == putloc) {
-            System.out.println(" - Queue is empty.");
-            return (char) 0;
-        }
-        return q[getloc--];
-    }
-}
-
-// Demonstrate the Queue class.
-class QDemo2 {
-    public static void main(String[] args) {
-        // construct 10-element empty queue
-        Stack q1 = new Stack(10);
-
-        char ch;
-        int i;
-
-        // show put characters onto q1
-        System.out.print("Input queue: ");
-        for(i=0; i<10; i++) {
-            System.out.print(ch = (char) ('A' + i));
-            q1.push(ch);
-//            System.out.print(ch);
-        }
-        System.out.println();
-
-
-        // Show the queue.
-        System.out.print("Contents for q1: ");
-        for(i=0; i < 10; i++) {
-            ch = q1.pop();
-            System.out.print(ch);
-        }
-        System.out.println("\n");
-
-    }
-}
 
 
 class VarArgs4 {

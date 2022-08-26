@@ -1,6 +1,6 @@
 package qpack;
 
-// A fixed size queue class for characters.
+// A fixed size queue class for characters that uses exceptions.
 public class FixedQueue implements ICharQ {
     private char[] q;  // this array holds the queue.
     private int putloc, getloc;  // the put and get indices.
@@ -12,21 +12,20 @@ public class FixedQueue implements ICharQ {
     }
 
     // Put a character into the queue.
-    public void put(char ch) {
-        if(putloc==q.length) {
-            System.out.println(" - Queue is full.");
-            return;
-        }
+    public void put(char ch)
+            throws QueueFullException {
+        if(putloc==q.length)
+            throw new QueueFullException(q.length);
 
         q[putloc++] = ch;
     }
 
     // Get a character from the queue.
-    public char get() {
-        if (putloc==getloc) {
-            System.out.println(" - Queue is empty.");
-            return (char) 0;
-        }
+    public char get()
+            throws QueueEmptyException {
+
+        if (putloc==getloc)
+            throw new QueueEmptyException();
 
         return q[getloc++];
     }
